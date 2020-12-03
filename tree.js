@@ -1,4 +1,4 @@
-const { func } = require("prop-types");
+
 
  class Node {
   constructor(data) {
@@ -37,8 +37,32 @@ const { func } = require("prop-types");
     let arr = [this.root]
     while(arr.length) {
       let node = arr.shift()
+      //take children and preppend to front
       arr.unshift(...node.children)
       func(node)
     }
+  }
+  //level width of tree
+  levelWidth(root){
+    const arr = [root, 's']
+    const counters = [0]
+
+    //while there are nodes
+    while(arr.length > 1) {
+      const node = arr.shift()
+      //if we've reached the width
+      if(node === 's') {
+        //enter new width
+        counters.push(0)
+        //put string back to the end
+        arr.push('s')
+      } else {
+        //node has children
+        arr.push(...node.children)
+        //increment the furthest width value
+        counters[counters.length - 1]++
+      }
+    }
+    return counters;
   }
  }
