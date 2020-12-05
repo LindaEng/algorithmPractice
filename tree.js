@@ -64,7 +64,4 @@
       }
     }
     return counters;
-
-    //max depth
-  }
  }
