@@ -9,6 +9,7 @@
 //2) Implement the 'insert' method for the Node class. Insert should accept an argument 'data', then create an insert a new node at the appropriate location in the tree.
 //3) Implement the 'contains' method for the Node class. Contains should accept a 'data' argument and return the Node in the tree with the same value. If the value isnt in the tree return null.
 
+
 class Node {
   constructor(data) {
     this.data = data;
@@ -44,5 +45,27 @@ class Node {
     }
 
     return null
+  }
+  //validate if binary tree is true/false
+  validate(node, min = null, max = null) {
+    //if node to the right is greater than max
+    if(max !== null && node.data > max) {
+      return false
+    }
+    //if node to the left is less than min
+    if(min !== null && node.data < min) {
+      return false
+    }
+
+    //first time
+    if(node.left && !validate(node.left, min, node.value)){
+      return false
+    }
+
+    if(node.right && !validate(node.right, node.value, max)) {
+      return false
+    }
+
+    return true
   }
 }
