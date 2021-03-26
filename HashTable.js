@@ -25,7 +25,7 @@ class HashTable {
         }
       })
     })
-
+    this.table = newTable
   }
 
   setItem = (key, value) => {
