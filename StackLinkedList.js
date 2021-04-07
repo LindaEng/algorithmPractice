@@ -29,13 +29,12 @@ class Stack {
     return this
   }
   pop() {
-    let node = this.top
     if(!node) return null
-    else{
-      while(node.next) {
-        node = node.next
-      }
-      node.next = null
+    if(this.length === 1){
+      this.top = this.bottom = null
+    }else{
+      let prevTop = this.top
+      this.top = prevTop.next
     }
     this.length--
   }
